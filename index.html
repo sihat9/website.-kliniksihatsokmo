@@ -2007,7 +2007,7 @@
                });
            }
            
-           // Event Listeners untuk Butang "Hari Ini" dan "Esok"
+                 // Event Listeners untuk Butang "Hari Ini" dan "Esok"
            document.getElementById('btnHariIni').addEventListener('click', function() {
                loadJadualDoktor('Hari Ini');
                // Tukar butang aktif
@@ -2043,22 +2043,11 @@
                }
            });
            
-          // Fungsi untuk Memuatkan Panel Klinik secara Default, Jadual Doktor Hari Ini, dan Waktu Sibuk
+           // Fungsi untuk Memuatkan Panel Klinik secara Default, Jadual Doktor Hari Ini, dan Waktu Sibuk
            window.onload = function() {
                displayPanels(true); // Paparkan 6 panel pertama
                loadJadualDoktor('Hari Ini'); // Memuatkan jadual doktor untuk hari ini
                loadBusyTimes(); // Memuatkan data waktu sibuk dan memaparkan carta
-               
-               // Carousel Autoslide Disable on Small Devices
-               const carousels = document.querySelectorAll('.carousel');
-               carousels.forEach(carousel => {
-                   const bsCarousel = new bootstrap.Carousel(carousel, {
-                       interval: (window.innerWidth < 768) ? false : (carousel.getAttribute('data-bs-interval') || 5000),
-                       ride: carousel.getAttribute('data-bs-ride') === 'carousel' ? 'carousel' : false,
-                       pause: 'hover',
-                       wrap: true
-                   });
-               });
            };
            
            // Fungsi untuk Auto-Hide Navbar selepas 3 Saat Tanpa Aktiviti
@@ -2080,31 +2069,12 @@
            }
            
            // Event Listeners untuk Aktiviti Pengguna
+           window.addEventListener('scroll', showNavbar);
            window.addEventListener('mousemove', showNavbar);
            window.addEventListener('keydown', showNavbar);
-           window.addEventListener('touchstart', showNavbar); // Untuk peranti sentuh
-           window.addEventListener('touchmove', showNavbar);  // Untuk peranti sentuh
            
            // Inisialisasi Timer
            resetHideNavbarTimer();
-           
-           // Event Listeners untuk Butang Load More
-           document.getElementById('loadMoreBtn').addEventListener('click', function() {
-               displayPanels(false); // Paparkan lebih banyak panel tanpa reset
-           });
-           
-           // Event Listeners untuk Butang Cari
-           document.getElementById('btnSearch').addEventListener('click', function() {
-               filterPanels();
-           });
-           
-           // Event Listener untuk Carian Enter
-           document.getElementById('searchPanel').addEventListener('keypress', function(event) {
-               if (event.key === 'Enter') {
-                   event.preventDefault();
-                   filterPanels();
-               }
-           });
            
            // Fungsi untuk Mengaktifkan Tab berdasarkan Dropdown
            document.querySelectorAll('.dropdown-item[href^="#"]').forEach(function(link) {
